@@ -24,8 +24,10 @@ public:
     void show();
     void add(TDATO &d);
     void remove();
+    void removeat(int at);
     void clear();
     NODE& get(int i);
+    void insert(TDATO &d, int at);
     int count();
     //Aux
     void debug(bool is_active);
@@ -33,7 +35,7 @@ public:
 private:
     int length = 0;
     bool debug_flag = true;
-    NODE *head_reference;
+    NODE* head_reference;
     NODE* find(int i);
 };
 

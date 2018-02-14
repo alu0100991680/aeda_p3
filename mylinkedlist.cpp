@@ -1,8 +1,12 @@
-#include <iostream>
 #include <string>
+#include <iostream>
 #include "mylinkedlist.h"
 
 using namespace std;
+
+//==================
+//Métodos estandares
+//==================
 
 mylinkedlist::mylinkedlist() {
 }
@@ -13,6 +17,9 @@ mylinkedlist::mylinkedlist(const mylinkedlist& orig) {
 mylinkedlist::~mylinkedlist() {
 }
 
+//================
+//Métodos práctica
+//================
 
 NODE * mylinkedlist::find(int at){
     NODE *n = this->head_reference;
@@ -31,7 +38,6 @@ void mylinkedlist::add(TDATO &d) {
         n->mynode.name = d.name;
         n->mynode.surname = d.surname;
 
-        
         NODE *d = this->find(this->length-1);
         
         d->next = n;
@@ -81,7 +87,6 @@ int mylinkedlist::count() {
     return this->length;
 }
 
-
 void mylinkedlist::show() {
     this->dmsg("F:SHOW");
     this->dmsg("F:SHOW:Lista de objectos");
@@ -97,6 +102,57 @@ void mylinkedlist::show() {
     }
 }
 
+void mylinkedlist::clear(){
+    this->dmsg("F:CLEAR");
+    int fullcontent = this->length;
+    for (int i=0;i<fullcontent;i++){
+        this->remove();
+    }
+    this->length = 0;
+}
+
+void mylinkedlist::insert(TDATO &d, int at){
+    this->dmsg("F:INSERT->" + std::to_string(at));
+    if((0<=at)&&(at<=this->length)){
+        NODE *m = new NODE();
+        m->mynode.cod = d.cod;
+        m->mynode.name = d.name;
+        m->mynode.surname = d.surname; 
+        if (at==0){
+            this->head_reference = m;
+        }
+        
+        if (at<this->length){
+            NODE *n = this->find(at);
+            m->next = n; 
+
+        }
+        
+        if (0<at){
+            NODE *p = this->find(at-1);
+            p->next = m;
+        }
+        
+        this->length++;
+    }
+}
+
+void mylinkedlist::removeat(int at){
+    this->dmsg("F:REMOVEAT->" + std::to_string(at));
+    if((0<=at)&&(at<=this->length)){
+        NODE *p = this->find(at-1);
+        NODE *n = this->find(at+1);
+        NODE *c = this->find(at);
+        p->next = n;
+        delete c;
+        this->length--;
+    }
+}
+
+//===========
+//Métodos Aux
+//===========
+
 void mylinkedlist::debug(bool is_active){
     this->debug_flag = is_active;
 }
@@ -105,13 +161,4 @@ void mylinkedlist::dmsg(std::string message){
     if (this->debug_flag==true){
         cout << message << endl;
     }
-}
-
-void mylinkedlist::clear(){
-    this->dmsg("F:CLEAR");
-    int fullcontent = this->length;
-    for (int i=0;i<fullcontent;i++){
-        this->remove();
-    }
-    this->length = 0;
 }

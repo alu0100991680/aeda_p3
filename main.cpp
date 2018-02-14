@@ -30,13 +30,13 @@ int main(int argc, char** argv) {
     v->add(a);
     v->add(b);
     v->add(c);
-    v->add(d);
-    v->show();
-    NODE aux = v->get(2);
-    /*v->remove();
+    v->insert(d, 3);
+    //v->show();
+    v->removeat(2);
     v->show();
     v->clear();
-    v->show();*/
+    
+    delete v;
     return 0;
 }
 
