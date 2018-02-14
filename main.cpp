@@ -28,6 +28,10 @@ int main(int argc, char** argv) {
     mylinkedlist *v = new mylinkedlist();
     v->debug(false);
     
+    cout << " ================= " << endl;
+    cout << "|  MYLINKEDLIST   |" << endl;
+    cout << " ================= " << endl << endl;
+    
     //Introducimos 3 usuario
     cout << "Introducimos Rámon, Yezer, Rayco. Mostramos resultado de la lista" << endl;
     v->add(a);
