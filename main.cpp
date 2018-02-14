@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
     v->add(b);
     v->add(c);
     v->insert(d, 3);
-    //v->show();
+    v->show();
     v->removeat(2);
     v->show();
     v->clear();

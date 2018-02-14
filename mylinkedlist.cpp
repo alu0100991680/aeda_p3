@@ -118,10 +118,7 @@ void mylinkedlist::insert(TDATO &d, int at){
         m->mynode.cod = d.cod;
         m->mynode.name = d.name;
         m->mynode.surname = d.surname; 
-        if (at==0){
-            this->head_reference = m;
-        }
-        
+
         if (at<this->length){
             NODE *n = this->find(at);
             m->next = n; 
@@ -131,6 +128,10 @@ void mylinkedlist::insert(TDATO &d, int at){
         if (0<at){
             NODE *p = this->find(at-1);
             p->next = m;
+        }
+        
+        if (at==0){
+            this->head_reference = m;
         }
         
         this->length++;
