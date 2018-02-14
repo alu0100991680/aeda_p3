@@ -27,14 +27,54 @@ int main(int argc, char** argv) {
     
     mylinkedlist *v = new mylinkedlist();
     v->debug(false);
+    
+    //Introducimos 3 usuario
+    cout << "Introducimos Rámon, Yezer, Rayco. Mostramos resultado de la lista" << endl;
     v->add(a);
     v->add(b);
     v->add(c);
-    v->insert(d, 3);
     v->show();
-    v->removeat(2);
+    
+    //Get
+    cout << "Visualizamos con get el usuario 0 y 2" << endl;
+    NODE u = v->get(0);
+    cout << u.mynode.cod << endl;
+    cout << u.mynode.name << endl;
+    cout << u.mynode.surname << endl;
+    cout << "-----" << endl;
+    NODE f = v->get(2);
+    cout << f.mynode.cod << endl;
+    cout << f.mynode.name << endl;
+    cout << f.mynode.surname << endl;
+
+    //Removeat 1
+    cout << "Eliminamos el usuario Yezer. Y verificamos como queda la lista y contabilizamos elementos" << endl; 
+    v->removeat(1);
     v->show();
+    cout << "Count: " << v->count() << endl;
+    
+    //Remove el ultimo en este caso Rayco
+    cout << "Eliminamos el último en este caso Rayco. Y verificamos como queda la lista y contabilizamos elementos" << endl; 
+    v->removeat(1);
+    v->show();
+    cout << "Count: " << v->count() << endl;
+    
+    //Add. Introducimos 1 usuario. Ana
+    cout << "Añadimos a Ana. Y verificamos como queda la lista y contabilizamos elementos" << endl; 
+    v->add(d);
+    v->show();
+    cout << "Count: " << v->count() << endl;
+
+    //Eliminamos la posicion 0
+    cout << "Eliminamos la posicion 0 y verificamos si Ana-Next apunta a 0x0" << endl; 
+    v->removeat(0);
+    v->show();
+    cout << "Count: " << v->count() << endl;
+    
+    //Vaciamos la pila con clear
+    cout << "Vaciamos la pila con clear y verificamos tamaño con count()" << endl;
     v->clear();
+    cout << "Count: " << v->count() << endl;
     
     delete v;
     return 0;

@@ -92,6 +92,7 @@ void mylinkedlist::show() {
     this->dmsg("F:SHOW:Lista de objectos");
     if (length==0){ this->dmsg("F:SHOW:Vacia"); }
     
+    cout << "--------" << endl;
     for (int i=0; i<this->length; i++){
         NODE *current_ = this->find(i);
         this->dmsg("F:SHOW:Objecto->" + std::to_string(i));
@@ -141,10 +142,18 @@ void mylinkedlist::insert(TDATO &d, int at){
 void mylinkedlist::removeat(int at){
     this->dmsg("F:REMOVEAT->" + std::to_string(at));
     if((0<=at)&&(at<=this->length)){
-        NODE *p = this->find(at-1);
-        NODE *n = this->find(at+1);
         NODE *c = this->find(at);
-        p->next = n;
+        if(0<at){
+            NODE *p = this->find(at-1);
+            NODE *n = nullptr;
+            if (at+1<this->length){        
+                n= this->find(at+1);
+            }
+            p->next = n;
+        }else{
+            this->head_reference = c->next;
+        }
+
         delete c;
         this->length--;
     }
