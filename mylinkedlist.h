@@ -7,10 +7,10 @@ struct TDATO{
     std::string surname;
 };
 
-class NODE{
+class LINKEDLISTNODE{
 public:
   TDATO mynode;
-  NODE *next;
+  LINKEDLISTNODE *next;
 private:
 };	
 
@@ -26,17 +26,17 @@ public:
     void remove();
     void removeat(int at);
     void clear();
-    NODE& get(int i);
+    LINKEDLISTNODE& get(int i);
     void insert(TDATO &d, int at);
     int count();
     //Aux
     void debug(bool is_active);
-    void dmsg(std::string message);
 private:
     int length = 0;
-    bool debug_flag = true;
-    NODE* head_reference;
-    NODE* find(int i);
+    bool debug_flag = false;
+    LINKEDLISTNODE* head_reference;
+    LINKEDLISTNODE* find(int i);
+    void dmsg(std::string message);
 };
 
 #endif /* MYLINKEDLIST_H */

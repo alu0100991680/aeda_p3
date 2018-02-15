@@ -21,8 +21,8 @@ mylinkedlist::~mylinkedlist() {
 //Métodos práctica
 //================
 
-NODE * mylinkedlist::find(int at){
-    NODE *n = this->head_reference;
+LINKEDLISTNODE * mylinkedlist::find(int at){
+    LINKEDLISTNODE *n = this->head_reference;
     for(int i=0;i<at;i++){
         n = n->next;
     }
@@ -32,13 +32,13 @@ NODE * mylinkedlist::find(int at){
 void mylinkedlist::add(TDATO &d) {
     this->dmsg("F:ADD");
 
-    NODE *n = new NODE();
+    LINKEDLISTNODE *n = new LINKEDLISTNODE();
     if (0<this->length){
         n->mynode.cod = d.cod;
         n->mynode.name = d.name;
         n->mynode.surname = d.surname;
 
-        NODE *d = this->find(this->length-1);
+        LINKEDLISTNODE *d = this->find(this->length-1);
         
         d->next = n;
         
@@ -67,7 +67,7 @@ void mylinkedlist::remove() {
 
         //Ampliamos el indicador de contenido
         if(1<this->length){
-            NODE *d = this->find(this->length-1);
+            LINKEDLISTNODE *d = this->find(this->length-1);
             delete d->next;
             this->length--;
         }else{
@@ -76,9 +76,9 @@ void mylinkedlist::remove() {
     }
 }
 
-NODE& mylinkedlist::get(int i){
+LINKEDLISTNODE& mylinkedlist::get(int i){
     this->dmsg("F:GET->" + to_string(i));
-    NODE *d = this->find(i);
+    LINKEDLISTNODE *d = this->find(i);
     return *d;
 }
 
@@ -94,7 +94,7 @@ void mylinkedlist::show() {
     
     cout << "--------" << endl;
     for (int i=0; i<this->length; i++){
-        NODE *current_ = this->find(i);
+        LINKEDLISTNODE *current_ = this->find(i);
         this->dmsg("F:SHOW:Objecto->" + to_string(i));
         cout << "Next->" << current_->next << endl;
         cout << current_->mynode.cod << endl;
@@ -115,19 +115,19 @@ void mylinkedlist::clear(){
 void mylinkedlist::insert(TDATO &d, int at){
     this->dmsg("F:INSERT->" + to_string(at));
     if((0<=at)&&(at<=this->length)){
-        NODE *m = new NODE();
+        LINKEDLISTNODE *m = new LINKEDLISTNODE();
         m->mynode.cod = d.cod;
         m->mynode.name = d.name;
         m->mynode.surname = d.surname; 
 
         if (at<this->length){
-            NODE *n = this->find(at);
+            LINKEDLISTNODE *n = this->find(at);
             m->next = n; 
 
         }
         
         if (0<at){
-            NODE *p = this->find(at-1);
+            LINKEDLISTNODE *p = this->find(at-1);
             p->next = m;
         }
         
@@ -142,10 +142,10 @@ void mylinkedlist::insert(TDATO &d, int at){
 void mylinkedlist::removeat(int at){
     this->dmsg("F:REMOVEAT->" + to_string(at));
     if((0<=at)&&(at<=this->length)){
-        NODE *c = this->find(at);
+        LINKEDLISTNODE *c = this->find(at);
         if(0<at){
-            NODE *p = this->find(at-1);
-            NODE *n = nullptr;
+            LINKEDLISTNODE *p = this->find(at-1);
+            LINKEDLISTNODE *n = nullptr;
             if (at+1<this->length){        
                 n= this->find(at+1);
             }

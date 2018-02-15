@@ -41,12 +41,12 @@ int main(int argc, char** argv) {
     
     //Get
     cout << "Visualizamos con get el usuario 0 y 2" << endl;
-    NODE u = v->get(0);
+    LINKEDLISTNODE u = v->get(0);
     cout << u.mynode.cod << endl;
     cout << u.mynode.name << endl;
     cout << u.mynode.surname << endl;
     cout << "-----" << endl;
-    NODE f = v->get(2);
+    LINKEDLISTNODE f = v->get(2);
     cout << f.mynode.cod << endl;
     cout << f.mynode.name << endl;
     cout << f.mynode.surname << endl;
